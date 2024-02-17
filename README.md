@@ -24,7 +24,7 @@ git clone https://github.com/umrcheng/bdbed.git
 2. 安装数据库
 
 ```bash
-cd /bdbed/util/sql
+cd bdbed/util/sql/
 
 python3 sql.py
 ```
