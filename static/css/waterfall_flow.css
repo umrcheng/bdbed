@@ -1,0 +1,50 @@
+@media only screen and (max-width: 500px) {
+    .waterfall-item {
+        width: 100% !important;
+    }
+}
+
+.waterfall {
+    position: relative;
+}
+
+.waterfall-item {
+    position: absolute;
+    width: 237px;
+    background: rgb(236, 146, 10);
+    margin-bottom: 20px;
+    user-select: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.image-item {
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.image-item:hover {
+    transition: all 0.5s ease-in-out;
+    transform: scale(1.07);
+}
+
+.copy {
+    position: absolute;
+    z-index: 99;
+    right: 0;
+    bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.show {
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
+}

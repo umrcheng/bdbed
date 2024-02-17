@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/viewer.min.css">
+    <link rel="stylesheet" href="/static/css/waterfall_flow.css">
+    <style>
+        .content-body > div {
+            margin: 20px 0;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div class="layui-panel">
+        <div style="padding: 32px;">图片类型。</div>
+    </div>
+
+    <div class="layui-form">
+        <select id="select-type" lay-filter="select-filter">
+            <option value="">请选择</option>
+            <option value="anonymity">匿名权限</option>
+            <option value="user">用户权限</option>
+            <option value="admin">管理员权限</option>
+        </select>
+    </div>
+
+    <pre class="layui-code code-link" lay-options="{theme: 'dark'}" id="url-link"></pre>
+
+    <!--瀑布流图片容器-->
+    <div id="waterfall" class="waterfall"></div>
+
+    <div class="layui-col-md12" style="text-align: center; margin: 30px auto 50px auto">
+        <div id="page"></div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/viewer.min.js"></script>
+    <script src="/static/js/waterfall_flow.js"></script>
+    <script src="/static/js/types.js"></script>
+{% endblock %}

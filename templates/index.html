@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/viewer.min.css">
+    <link rel="stylesheet" href="/static/css/waterfall_flow.css">
+
+{% endblock %}
+
+{% block content %}
+
+    <!--瀑布流图片容器-->
+    <div id="waterfall" class="waterfall"></div>
+
+    <!--分页-->
+    <div class="layui-col-md12" style="text-align: center; margin: 30px auto 50px auto">
+        <div id="page"></div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/viewer.min.js"></script>
+    <script src="/static/js/waterfall_flow.js"></script>
+
+    <script>
+        layui.use(function () {
+            let $ = layui.$;
+            let layPage = layui.laypage;
+
+            $(document).ready(() => {
+                refresh = $(".layui-laypage-refresh");
+            })
+
+
+            // 完整显示
+            layPage.render({
+                elem: 'page', // 元素 id
+                count: {{ count }}, // 数据总数
+                limit: 50,
+                limits: [30, 50, 70, 100],
+                groups: 5,
+                layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip'], // 功能布局
+                jump: function (obj) {
+                    let limit = obj.limit;
+                    let curr = obj.curr;
+
+                    // 分页被点击请求图片信息，有长度，偏移量
+                    $.ajax({
+                        type: "post",
+                        url: "/api/image/range",
+                        data: {
+                            limit: limit,
+                            offset: (curr - 1) * limit
+                        },
+                        success(result) {
+                            // 清空容器之前的图片
+                            $(waterfall).empty().css("height", "0");
+                            // 根据请求信息构建新的图片元素
+                            createImagesItem(result, $)
+                        },
+                        error() {
+                            layer.msg("获取图片信息失败");
+                        },
+                    })
+                }
+            });
+        });
+
+
+    </script>
+
+{% endblock %}

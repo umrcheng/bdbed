@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+    .content-body > div,
+    .content-body > form > div,
+    .content-body > form > button {
+        margin-bottom: 20px;
+    }
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<!-- 内容主体区域 -->
+<div class="layui-panel">
+    <div style="padding: 32px;">上传图片到图床，选择api查看用户权限</div>
+</div>
+
+<form class="layui-form" action="#" method="post">
+    <!--权限-->
+    <div class="layui-form">
+        <select name="user">
+            <option value="anonymity" selected>匿名</option>
+            <option value="user">用户</option>
+            <option value="admin">管理员</option>
+        </select>
+    </div>
+    <!--权限结束-->
+
+    <!--类别-->
+    <div class="layui-input-wrap">
+        <input type="text" lay-affix="clear" placeholder="类别" class="layui-input" name="type">
+    </div>
+    <!--类别结束-->
+
+    <div class="layui-upload">
+        <!--点击上传按钮-->
+        <!--<button type="button" class="layui-btn layui-btn-normal" id="ID-upload-demo-files">选择多文件</button>-->
+
+        <!--点击上传，拖拽上传-->
+        <div class="layui-upload-drag" style="display: block;" id="upload-drag">
+            <i class="layui-icon layui-icon-upload"></i>
+            <div>点击上传，或将文件拖拽到此处</div>
+            <div class="layui-hide" id="ID-upload-demo-preview">
+                <hr>
+                <img src="" alt="上传成功后渲染" style="max-width: 100%">
+            </div>
+        </div>
+        <!--点击上传，拖拽上传结束-->
+
+        <!--上传预览-->
+        <div class="layui-upload-list">
+            <table class="layui-table">
+                <colgroup>
+                    <col style="min-width: 100px;">
+                    <col width="150">
+                    <col width="260">
+                    <col width="150">
+                </colgroup>
+                <thead>
+                <th>文件名</th>
+                <th>大小</th>
+                <th>上传进度</th>
+                <th>操作</th>
+                </thead>
+                <tbody id="ID-upload-demo-files-list"></tbody>
+            </table>
+        </div>
+        <!--上传预览结束-->
+    </div>
+
+    <button id="ID-upload-demo-files-action" type="button" class="layui-btn layui-btn-fluid">上传</button>
+</form>
+{% endblock %}
+
+
+{% block js %}
+<script src="/static/js/upload.js"></script>
+{% endblock %}
+
+
